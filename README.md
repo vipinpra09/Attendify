@@ -2,6 +2,8 @@
 
 > **Smart Attendance. Better Tracking.**
 
+**Live Demo:** https://attendifyweb.vercel.app/
+
 Attendify is a modern **College Attendance Management System** designed to digitize attendance tracking for administrators, teachers, and students. It provides role-based dashboards, attendance management, automatic percentage calculation, low-attendance alerts, history, and reports through a clean web interface.
 
 ## Features
