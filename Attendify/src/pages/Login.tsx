@@ -7,9 +7,9 @@ import { Badge, Button, Field, Input, Logo, inputCls, useToast, cn } from "../co
 import type { Role } from "../lib/types";
 
 const DEMO_ACCOUNTS: { role: Role; name: string; email: string; password: string; icon: typeof ShieldCheck; tone: "night" | "brand" | "ok" }[] = [
-  { role: "ADMIN", name: "Vipin Prajapati", email: "admin@attendify.com", password: "admin123", icon: ShieldCheck, tone: "night" },
-  { role: "TEACHER", name: "Anita Sharma", email: "teacher@attendify.com", password: "teacher123", icon: GraduationCap, tone: "brand" },
-  { role: "STUDENT", name: "Aarav Kumar", email: "student@attendify.com", password: "student123", icon: UserRound, tone: "ok" },
+  { role: "ADMIN", name: "Neha Tomar", email: "neha@attendify.com", password: "admin123", icon: ShieldCheck, tone: "night" },
+  { role: "TEACHER", name: "Arpita Singh", email: "arpita@attendify.com", password: "teacher123", icon: GraduationCap, tone: "brand" },
+  { role: "STUDENT", name: "Rohit Sharma", email: "rohit@attendify.com", password: "student123", icon: UserRound, tone: "ok" },
 ];
 
 export default function Login() {
