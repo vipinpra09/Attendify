@@ -15,7 +15,7 @@ import {
 } from "./types";
 import type { DB } from "./db";
 
-export const SEED_VERSION = 3;
+export const SEED_VERSION = 4;
 
 /* ---------- deterministic PRNG ---------- */
 function strSeed(s: string): number {
@@ -35,7 +35,7 @@ function mulberry32(seed: number) {
 
 /* ---------- people ---------- */
 const TEACHER_DEFS = [
-  { id: "t1", name: "Neha Tomar", email: "neha@attendify.com", department: "CSE", phone: "9825014701" },
+  { id: "t1", name: "Neha Tomar", email: "teacher@attendify.com", department: "CSE", phone: "9825014701" },
   { id: "t2", name: "Arpita Singh", email: "arpita@attendify.com", department: "CSE", phone: "9825014702" },
   { id: "t3", name: "Shivam Singh", email: "shivam@attendify.com", department: "CSE", phone: "9825014703" },
   { id: "t4", name: "Rajesh Verma", email: "rajesh.verma@attendify.com", department: "ECE", phone: "9825014704" },
