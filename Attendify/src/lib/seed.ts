@@ -1,8 +1,3 @@
-/* =========================================================
-   Attendify – deterministic demo dataset
-   Generates users, teachers, students, subjects, classes and
-   ~9 weeks of realistic attendance history.
-   ========================================================= */
 
 import {
   addDaysISO,
@@ -40,9 +35,9 @@ function mulberry32(seed: number) {
 
 /* ---------- people ---------- */
 const TEACHER_DEFS = [
-  { id: "t1", name: "Anita Sharma", email: "teacher@attendify.com", department: "CSE", phone: "9825014701" },
-  { id: "t2", name: "Meera Iyer", email: "meera.iyer@attendify.com", department: "CSE", phone: "9825014702" },
-  { id: "t3", name: "Kavita Rao", email: "kavita.rao@attendify.com", department: "CSE", phone: "9825014703" },
+  { id: "t1", name: "Neha Tomar", email: "neha@attendify.com", department: "CSE", phone: "9825014701" },
+  { id: "t2", name: "Arpita Singh", email: "arpita@attendify.com", department: "CSE", phone: "9825014702" },
+  { id: "t3", name: "Shivam Singh", email: "shivam@attendify.com", department: "CSE", phone: "9825014703" },
   { id: "t4", name: "Rajesh Verma", email: "rajesh.verma@attendify.com", department: "ECE", phone: "9825014704" },
   { id: "t5", name: "Suresh Patil", email: "suresh.patil@attendify.com", department: "Mechanical", phone: "9825014705" },
 ];
