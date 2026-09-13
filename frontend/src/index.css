@@ -1,0 +1,168 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Bricolage Grotesque", "Manrope", ui-sans-serif, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", monospace;
+
+  --color-brand-50: #f1f4ff;
+  --color-brand-100: #e4eaff;
+  --color-brand-200: #cdd9fe;
+  --color-brand-300: #aabdfc;
+  --color-brand-400: #8298f8;
+  --color-brand-500: #5f74f0;
+  --color-brand-600: #4354e4;
+  --color-brand-700: #3542c9;
+  --color-brand-800: #2e37a0;
+  --color-brand-900: #2a327e;
+  --color-brand-950: #1a1e4b;
+
+  --color-night-600: #2c3766;
+  --color-night-700: #212a52;
+  --color-night-800: #161d3d;
+  --color-night-900: #0f142e;
+  --color-night-950: #0a0e22;
+
+  --color-paper: #f4f6fb;
+
+  --color-ok-50: #e9f9f1;
+  --color-ok-100: #d0f2e1;
+  --color-ok-200: #a7e5c8;
+  --color-ok-500: #17a56b;
+  --color-ok-600: #0f8a58;
+  --color-ok-700: #0d6f49;
+
+  --color-warn-50: #fdf3e3;
+  --color-warn-100: #fbe5c2;
+  --color-warn-200: #f7d194;
+  --color-warn-500: #e88a10;
+  --color-warn-600: #c97107;
+  --color-warn-700: #a35a08;
+
+  --color-bad-50: #fdeef0;
+  --color-bad-100: #fbdce0;
+  --color-bad-200: #f7bcc4;
+  --color-bad-500: #e23d4e;
+  --color-bad-600: #c22b3c;
+  --color-bad-700: #9e2333;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-paper text-slate-800 font-sans antialiased;
+}
+
+::selection {
+  background: var(--color-brand-200);
+  color: var(--color-brand-950);
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background: #c8d0e0;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: #a9b4cc;
+  background-clip: content-box;
+  border: 2px solid transparent;
+  border-radius: 8px;
+}
+
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- tables ---------- */
+.tbl {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.855rem;
+}
+.tbl thead th {
+  @apply text-left text-[11px] font-bold uppercase tracking-[0.08em] text-slate-500 bg-slate-50/90 border-b border-slate-200 px-4 py-2.5 whitespace-nowrap;
+}
+.tbl tbody td {
+  @apply px-4 py-3 border-b border-slate-100 align-middle;
+}
+.tbl tbody tr {
+  transition: background-color 0.15s ease;
+}
+.tbl tbody tr:hover {
+  background-color: #f7f9fe;
+}
+.tbl tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* ---------- animations ---------- */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.94) translateY(8px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+@keyframes toastIn {
+  from { opacity: 0; transform: translateX(28px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideRight {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+@keyframes barGrow {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.45; transform: scale(0.75); }
+}
+@keyframes shimmer {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+
+.anim-fade-up { animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.anim-fade-in { animation: fadeIn 0.35s ease both; }
+.anim-scale-in { animation: scaleIn 0.24s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.anim-toast { animation: toastIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.anim-drawer { animation: slideRight 0.28s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.anim-bar { transform-origin: left; animation: barGrow 0.8s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.live-dot { animation: pulseDot 1.6s ease-in-out infinite; }
+
+.skeleton {
+  background: linear-gradient(90deg, #eceff6 25%, #f6f8fc 50%, #eceff6 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s linear infinite;
+}
+
+/* landing dot grid */
+.dot-grid {
+  background-image: radial-gradient(circle, #c7cfe4 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+.night-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 34px 34px;
+}
