@@ -45,45 +45,104 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(Arrays.stream(corsOrigins.split(",")).map(String::trim).toList());
-        config.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
+
+        // Allow Vercel + your custom domain
+        config.setAllowedOriginPatterns(
+                Arrays.stream(corsOrigins.split(","))
+                        .map(String::trim)
+                        .toList()
+        );
+
+        config.setAllowedMethods(List.of(
+                "GET",
+                "POST",
+                "PUT",
+                "PATCH",
+                "DELETE",
+                "OPTIONS"
+        ));
+
         config.setAllowedHeaders(List.of("*"));
         config.setExposedHeaders(List.of("Authorization"));
         config.setAllowCredentials(true);
         config.setMaxAge(3600L);
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+
+        UrlBasedCorsConfigurationSource source =
+                new UrlBasedCorsConfigurationSource();
+
         source.registerCorsConfiguration("/**", config);
+
         return source;
     }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+
         http
                 .csrf(csrf -> csrf.disable())
+
                 .cors(Customizer.withDefaults())
-                .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+
+                .sessionManagement(sm ->
+                        sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                )
+
                 .authorizeHttpRequests(auth -> auth
+
+                        // Allow browser CORS preflight requests
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+
+                        // Login does not require JWT
                         .requestMatchers("/api/auth/login").permitAll()
+
+                        // Other API endpoints require authentication
                         .requestMatchers("/api/**").authenticated()
+
+                        // Everything else is public
                         .anyRequest().permitAll()
                 )
+
                 .exceptionHandling(ex -> ex
                         .authenticationEntryPoint((request, response, exception) ->
-                                writeJson(response, 401, "Your session has expired. Please log in again."))
+                                writeJson(
+                                        response,
+                                        401,
+                                        "Your session has expired. Please log in again."
+                                )
+                        )
+
                         .accessDeniedHandler((request, response, exception) ->
-                                writeJson(response, 403, "You don't have permission to perform this action."))
+                                writeJson(
+                                        response,
+                                        403,
+                                        "You don't have permission to perform this action."
+                                )
+                        )
                 )
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+
+                .addFilterBefore(
+                        jwtAuthenticationFilter,
+                        UsernamePasswordAuthenticationFilter.class
+                );
+
         return http.build();
     }
 
-    private void writeJson(HttpServletResponse response, int status, String message) throws java.io.IOException {
+    private void writeJson(
+            HttpServletResponse response,
+            int status,
+            String message
+    ) throws java.io.IOException {
+
         response.setStatus(status);
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-        objectMapper.writeValue(response.getOutputStream(), Map.of(
-                "status", status,
-                "message", message
-        ));
+
+        objectMapper.writeValue(
+                response.getOutputStream(),
+                Map.of(
+                        "status", status,
+                        "message", message
+                )
+        );
     }
 }
