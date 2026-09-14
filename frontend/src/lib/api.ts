@@ -53,7 +53,7 @@ function fail(status: number, message: string, errors?: string[]): never {
   throw new ApiError(status, message, errors);
 }
 
-const BASE = "/api";
+const BASE = `${import.meta.env.VITE_API_URL}/api`;
 
 function authHeader(token: string | null): Record<string, string> {
   return token ? { Authorization: `Bearer ${token}` } : {};
