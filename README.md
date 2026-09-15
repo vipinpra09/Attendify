@@ -365,5 +365,5 @@ This project is developed for **educational and academic purposes**.
   Made with ❤️ by <strong>Vipin Prajapati</strong> <br>
   Made with ❤️ by <strong>Vishal Kumar Yadav</strong> <br>
   Made with ❤️ by <strong>Yogesh Yadav</strong> <br>
-  Made with ❤️ by <strong>VishvNath Yadav</strong> <br>
+  Made with ❤️ by <strong>VishvNath Singh</strong> <br>
 </p>
