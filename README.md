@@ -206,21 +206,6 @@ Authorization: Bearer <JWT>
 ```
 
 ---
-
-## 🔑 Demo Accounts
-
-The backend seeds demonstration users on first startup.
-
-| Role | Email | Password |
-|---|---|---|
-| 👨‍💼 Admin | `admin@attendify.com` | `admin123` |
-| 👩‍🏫 Teacher | `teacher@attendify.com` | `teacher123` |
-| 👨‍🎓 Student | `student@attendify.com` | `student123` |
-
-> ⚠️ These credentials are for development/demo use only. Do not use them in a production deployment.
-
----
-
 ## 🚀 Run Locally
 
 ### Prerequisites
@@ -378,4 +363,7 @@ This project is developed for **educational and academic purposes**.
 
 <p align="center">
   Made with ❤️ by <strong>Vipin Prajapati</strong>
+  Made with ❤️ by <strong>Vishal Kumar Yadav</strong>
+  Made with ❤️ by <strong>Yogesh Yadav</strong>
+  Made with ❤️ by <strong>VishvNath Yadav</strong>
 </p>
