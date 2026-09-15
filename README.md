@@ -1,11 +1,11 @@
 # 🎓 Attendify — College Attendance Management System
 
 <p align="center">
-  <b>Smart Attendance. Better Tracking.</b>
+  <strong>Smart Attendance. Better Tracking.</strong>
 </p>
 
 <p align="center">
-  A modern web-based attendance management system designed to simplify attendance tracking for colleges, teachers, administrators, and students.
+  A full-stack, role-based college attendance management system for administrators, teachers, and students.
 </p>
 
 <p align="center">
@@ -15,72 +15,161 @@
 
 ---
 
-## 📌 About the Project
+## 📌 Overview
 
-**Attendify** is a College Attendance Management System developed as an academic mini project. It digitizes the traditional attendance process and provides a centralized platform for managing students, teachers, subjects, classes, and attendance records.
+**Attendify** is a full-stack College Attendance Management System built to digitize attendance workflows and provide a centralized platform for managing students, teachers, subjects, classes, attendance records, and reports.
 
-The system provides dedicated functionality for **Administrators, Teachers, and Students**, making attendance tracking more organized, accurate, and accessible.
+The application provides separate experiences for **Admin, Teacher, and Student** roles, with role-based access to attendance operations, dashboards, statistics, history, and reporting.
 
 ---
 
-## ✨ Key Features
+## ✨ Features
 
-- 🔐 Secure role-based authentication
-- 👨‍💼 Admin, Teacher, and Student dashboards
-- 👨‍🎓 Student management
-- 👩‍🏫 Teacher management
-- 📚 Subject and class management
-- ✅ Mark and manage attendance
-- 🚫 Duplicate attendance session prevention
-- 📊 Automatic attendance percentage calculation
-- ⚠️ Low-attendance alerts
-- 🎯 75% minimum attendance threshold
-- 📈 Role-specific statistics and dashboards
-- 🗓️ Attendance history with filters
-- 📄 Daily, monthly, and subject-wise reports
-- 📉 Low-attendance reports
-- 📥 CSV report export
-- 📱 Responsive modern user interface
-- 🔔 Toast notifications and error handling
+### 🔐 Authentication & Security
+
+- JWT-based authentication
+- Role-based authorization
+- Protected application routes
+- Spring Security integration
+- Validation for API requests
+
+### 👨‍💼 Admin
+
+- Manage students and teachers
+- Manage subjects and classes
+- Monitor attendance records
+- View dashboard statistics
+- Generate attendance reports
+- View low-attendance students
+- Export reports as CSV
+
+### 👩‍🏫 Teacher
+
+- View assigned subjects/classes
+- Mark attendance
+- Prevent duplicate attendance sessions
+- Manage attendance records
+- View attendance history
+- Monitor attendance percentages
+- Generate attendance reports
+
+### 👨‍🎓 Student
+
+- View personal attendance
+- View attendance percentage
+- Check attendance history
+- Filter attendance records
+- View attendance statistics
+- Monitor low-attendance status
+
+### 📊 Reporting & Attendance
+
+- Automatic attendance percentage calculation
+- 75% minimum attendance threshold
+- Daily, monthly, and subject-wise reports
+- Low-attendance reports
+- CSV export
+- Responsive dashboard UI
+- Toast notifications and error handling
 
 ---
 
 ## 👥 User Roles
 
-| Role | Access |
+| Role | Main Capabilities |
 |---|---|
-| 👨‍💼 **Admin** | Manage students, teachers, subjects, classes, attendance, and reports |
-| 👩‍🏫 **Teacher** | Mark attendance, manage assigned subjects, and view reports |
-| 👨‍🎓 **Student** | View personal attendance, history, statistics, and reports |
+| 👨‍💼 **Admin** | Users, subjects, classes, attendance, statistics and reports |
+| 👩‍🏫 **Teacher** | Attendance marking, assigned classes/subjects and reports |
+| 👨‍🎓 **Student** | Personal attendance, history, statistics and reports |
 
 ---
 
-## 🔑 Demo Credentials
+## 📊 Attendance Calculation
 
-> ⚠️ These credentials are intended for development and demonstration purposes.
+Attendify calculates attendance automatically using:
 
-| Role | Email | Password |
-|---|---|---|
-| Admin | `admin@attendify.com` | `admin123` |
-| Teacher | `teacher@attendify.com` | `teacher123` |
-| Student | `student@attendify.com` | `student123` |
+```text
+Attendance % = (Classes Attended / Total Classes) × 100
+```
+
+The configured minimum attendance requirement is **75%**.
+
+Example:
+
+```text
+34 / 40 × 100 = 85%  → Good Attendance
+26 / 38 × 100 = 68%  → Low Attendance
+```
 
 ---
 
-## 🛠️ Technology Stack
+## 🏗️ Architecture
 
-### 🎨 Frontend
+```text
+┌────────────────────────────┐
+│ React + TypeScript         │
+│ Frontend                   │
+└─────────────┬──────────────┘
+              │ REST API
+              ▼
+┌────────────────────────────┐
+│ Spring Boot                │
+│ Controllers                │
+└─────────────┬──────────────┘
+              ▼
+┌────────────────────────────┐
+│ Service Layer              │
+└─────────────┬──────────────┘
+              ▼
+┌────────────────────────────┐
+│ Repository / JPA           │
+└─────────────┬──────────────┘
+              ▼
+┌────────────────────────────┐
+│ PostgreSQL                 │
+└────────────────────────────┘
+```
 
-- React 18
-- TypeScript
-- Vite
-- Tailwind CSS
-- React Router
-- Framer Motion
-- Recharts
-- Lucide React
+### Backend flow
 
-### 📦 Supporting Libraries
+```text
+Controller → Service → Repository → PostgreSQL
+```
+
+The frontend communicates with the Spring Boot backend through REST APIs. JWT tokens are used for authenticated requests.
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+
+- ⚛️ React 18
+- 🟦 TypeScript
+- ⚡ Vite
+- 🎨 Tailwind CSS
+- 🧭 React Router
+- 🎞️ Framer Motion
+- 📈 Recharts
+- 🎯 Lucide React
+
+### Backend
+
+- ☕ Java 17
+- 🌱 Spring Boot 3.2.5
+- Spring Web
+- Spring Data JPA
+- Hibernate
+- Spring Security
+- Bean Validation
+- JWT (JJWT)
+- Maven
+
+### Database
+
+- 🐘 PostgreSQL
+
+### Additional Libraries
 
 - Supabase JavaScript Client
 - dnd-kit
@@ -88,137 +177,94 @@ The system provides dedicated functionality for **Administrators, Teachers, and 
 - UUID
 - canvas-confetti
 
-### ⚙️ Backend Architecture
-
-The project is designed around a REST API architecture compatible with:
-
-- Java
-- Spring Boot
-- Spring Web
-- Spring Data JPA
-- Hibernate
-- Spring Security
-- JWT Authentication
-- Maven
-- PostgreSQL
-
-The React frontend talks to a Spring Boot 3 backend over REST. JWT tokens are issued at login and sent as `Authorization: Bearer <token>`. Persistence is PostgreSQL via Spring Data JPA.
-
 ---
 
-## 🏗️ System Architecture
+## 🔌 REST API
 
-```
-React Frontend
-       │
-       ▼
-   API Layer
-       │
-       ▼
- Service Layer
-       │
-       ▼
-Repository Layer
-       │
-       ▼
- PostgreSQL
-```
+The backend exposes REST endpoints for authentication, users, attendance, and reporting.
 
-### Spring Boot Backend Architecture
-
-```
-Controller
-    ↓
-Service
-    ↓
-Repository
-    ↓
-PostgreSQL
-```
-
----
-
-## 📊 Attendance Calculation
-
-Attendance percentage is calculated automatically:
-
-```
-Attendance % = (Classes Attended / Total Classes) × 100
-```
-
-### Example
-
-```
-34 / 40 × 100 = 85%  → Good Attendance
-
-26 / 38 × 100 = 68%  → Low Attendance
-```
-
-The default minimum attendance requirement is **75%**.
-
----
-
-## 🔌 REST API Design
-
-The application is structured around RESTful APIs such as:
-
-| Method | Endpoint | Access |
+| Method | Endpoint | Purpose |
 |---|---|---|
-| POST | `/api/auth/login` | Public |
-| GET | `/api/auth/me` | Authenticated User |
-| GET/POST | `/api/students` | Admin / Teacher |
-| GET/PUT/DELETE | `/api/students/{id}` | Admin / Authorized User |
-| GET/POST | `/api/teachers` | Admin |
-| GET/PUT/DELETE | `/api/teachers/{id}` | Admin |
-| GET | `/api/subjects` | Authenticated User |
-| GET | `/api/classes` | Authenticated User |
-| GET | `/api/attendance` | Role-Based |
-| POST | `/api/attendance` | Teacher / Admin |
-| PUT | `/api/attendance/{id}` | Teacher / Admin |
-| GET | `/api/reports/attendance` | Admin / Teacher |
-| GET | `/api/reports/low-attendance` | Admin / Teacher |
+| POST | `/api/auth/login` | User login |
+| GET | `/api/auth/me` | Current authenticated user |
+| GET/POST | `/api/students` | Manage students |
+| GET/PUT/DELETE | `/api/students/{id}` | Student operations |
+| GET/POST | `/api/teachers` | Manage teachers |
+| GET/PUT/DELETE | `/api/teachers/{id}` | Teacher operations |
+| GET | `/api/subjects` | List subjects |
+| GET | `/api/classes` | List classes |
+| GET | `/api/attendance` | Attendance records |
+| POST | `/api/attendance` | Mark attendance |
+| PUT | `/api/attendance/{id}` | Update attendance |
+| GET | `/api/reports/attendance` | Attendance report |
+| GET | `/api/reports/low-attendance` | Low-attendance report |
 
-### Authentication
+Authenticated requests use:
 
-Authenticated requests use JWT tokens:
-
-```
+```http
 Authorization: Bearer <JWT>
 ```
 
 ---
 
-## Run Locally
+## 🔑 Demo Accounts
 
-### 1. Clone the Repository
+The backend seeds demonstration users on first startup.
+
+| Role | Email | Password |
+|---|---|---|
+| 👨‍💼 Admin | `admin@attendify.com` | `admin123` |
+| 👩‍🏫 Teacher | `teacher@attendify.com` | `teacher123` |
+| 👨‍🎓 Student | `student@attendify.com` | `student123` |
+
+> ⚠️ These credentials are for development/demo use only. Do not use them in a production deployment.
+
+---
+
+## 🚀 Run Locally
+
+### Prerequisites
+
+- Node.js 18+
+- npm
+- Java 17+
+- Maven
+- PostgreSQL
+
+### 1. Clone the repository
 
 ```bash
 git clone https://github.com/vipinpra09/Attendify.git
 cd Attendify
 ```
 
-### 2. Start PostgreSQL
+### 2. Configure PostgreSQL
 
-```bash
-sudo service postgresql start
+Create a PostgreSQL database and user, then provide these environment variables to the backend:
 
-sudo -u postgres psql -c "CREATE USER attendify WITH PASSWORD 'attendify' LOGIN;"
-sudo -u postgres psql -c "CREATE DATABASE attendify OWNER attendify;"
-sudo -u postgres psql -d attendify -c "GRANT ALL ON SCHEMA public TO attendify;"
+```text
+DB_URL=jdbc:postgresql://localhost:5432/attendify
+DB_USERNAME=attendify
+DB_PASSWORD=your_password
+JWT_SECRET=your_secret
+JWT_EXPIRATION_MS=43200000
+CORS_ORIGINS=http://localhost:5173
 ```
 
-Skip the `CREATE` statements if the user and database already exist.
+The backend reads database and JWT configuration from environment variables rather than storing credentials in source code.
 
-### 3. Start the Spring Boot backend
+### 3. Start the backend
 
 ```bash
 cd backend
 mvn spring-boot:run
 ```
 
-The API starts on `http://localhost:8080`. Demo data is seeded on first run.
+The backend port is configurable with the `PORT` environment variable.
 
-### 4. Start the React frontend
+### 4. Start the frontend
+
+Open a new terminal:
 
 ```bash
 cd frontend
@@ -226,29 +272,25 @@ npm install
 npm run dev
 ```
 
-Vite proxies `/api` to `http://localhost:8080`. The UI is at `http://localhost:3000`.
-
 ---
 
 ## 📦 Production Build
 
-Create an optimized production build:
+From the `frontend` directory:
 
 ```bash
-cd frontend
 npm run build
 ```
 
-The production files will be generated inside:
+The production build is generated in:
 
-```
+```text
 dist/
 ```
 
-### Type Checking
+Run TypeScript checks with:
 
 ```bash
-cd frontend
 npm run typecheck
 ```
 
@@ -256,20 +298,20 @@ npm run typecheck
 
 ## 📁 Project Structure
 
-```
+```text
 Attendify/
 │
-├── frontend/                   React + TypeScript frontend
+├── frontend/
 │   ├── src/
 │   ├── public/
 │   ├── index.html
 │   ├── package.json
-│   ├── tsconfig.json
 │   └── vite.config.js
 │
-├── backend/                    Spring Boot 3 + PostgreSQL API
-│   ├── pom.xml
-│   └── src/main/java/com/attendify/
+├── backend/
+│   ├── src/main/java/com/attendify/
+│   ├── src/main/resources/
+│   └── pom.xml
 │
 └── README.md
 ```
@@ -278,30 +320,28 @@ Attendify/
 
 ## 🎯 Project Objectives
 
-The main objectives of Attendify are:
-
 - Reduce manual attendance work
-- Improve accuracy in attendance records
-- Provide real-time attendance statistics
-- Help students monitor attendance percentage
+- Improve accuracy of attendance records
+- Give students visibility into their attendance
+- Help teachers manage attendance efficiently
 - Identify low-attendance students quickly
-- Provide an organized reporting system
-- Create a scalable foundation for a complete college management system
+- Centralize attendance reporting
+- Provide a scalable full-stack foundation for college management
 
 ---
 
 ## 🔮 Future Enhancements
 
 - 📱 Mobile application
-- 📷 QR-code based attendance
-- 🔐 Biometric attendance integration
+- 📷 QR-code attendance
+- 🔐 Biometric attendance
 - 📧 Email notifications
 - 📩 Parent notifications
-- 📝 Student leave request system
-- 🗓️ Timetable-aware attendance scheduling
+- 📝 Student leave-request workflow
+- 🗓️ Timetable integration
 - 🎓 Semester and academic-year management
-- 📊 Advanced analytics and insights
-- 🤖 AI-based attendance prediction
+- 📊 Advanced analytics
+- 🤖 AI-based attendance insights
 
 ---
 
@@ -309,8 +349,8 @@ The main objectives of Attendify are:
 
 **Vipin Prajapati**
 
-- GitHub: https://github.com/vipinpra09
-- Project Repository: https://github.com/vipinpra09/Attendify
+- GitHub: [@vipinpra09](https://github.com/vipinpra09)
+- Repository: [Attendify](https://github.com/vipinpra09/Attendify)
 
 ---
 
@@ -322,6 +362,7 @@ The main objectives of Attendify are:
 | **Project Type** | College Mini Project |
 | **Domain** | Education Technology |
 | **Category** | Attendance Management System |
+| **Architecture** | Full Stack / REST API |
 
 ---
 
@@ -332,9 +373,9 @@ This project is developed for **educational and academic purposes**.
 ---
 
 <p align="center">
-  ⭐ If you find this project useful, consider giving it a star!
+  ⭐ If you find Attendify useful, consider giving the repository a star!
 </p>
 
 <p align="center">
-  Made with ❤️ for better attendance management.
+  Made with ❤️ by <strong>Vipin Prajapati</strong>
 </p>
