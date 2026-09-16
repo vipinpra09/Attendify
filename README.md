@@ -326,7 +326,7 @@ Attendify/
 - 🗓️ Timetable integration
 - 🎓 Semester and academic-year management
 - 📊 Advanced analytics
-- 🤖 AI-based attendance insights
+
 
 ---
 
