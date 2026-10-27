@@ -9,8 +9,7 @@
 </p>
 
 <p align="center">
-  <a href="https://attendify-ndnk3ngqi-vipinpra09s-projects.vercel.app/">🌐 Live Demo</a> ·
-  <a href="https://github.com/vipinpra09/Attendify">📂 Repository</a>
+  <a href="https://attendify-eight-kappa.vercel.app/">🌐 Live Demo</a> ·
 </p>
 
 ---
