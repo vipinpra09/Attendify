@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   AlertTriangle, ArrowRight, BarChart3, BellRing, CheckCircle2, ClipboardCheck,
-  KeyRound, Layers, ShieldCheck, Users,
+  ShieldCheck, Users,
   type LucideIcon,
 } from "lucide-react";
 import { Badge, Button, Logo, cn } from "../components/ui";
@@ -96,7 +96,7 @@ const FEATURES: Feature[] = [
   { icon: Users, title: "Student Management", span: "md:col-span-2", extra: "rolls", desc: "Enrollment numbers, branches, semesters and sections — unique, validated records instead of messy registers." },
   { icon: BellRing, title: "Low Attendance Alerts", span: "md:col-span-2", extra: "alert", desc: "Anyone below the 75% threshold is flagged automatically, with the exact number of classes needed to recover." },
   { icon: ShieldCheck, title: "Role-Based Access", span: "md:col-span-2", extra: "roles", desc: "Admins manage the system, teachers mark their subjects, students see only their own record." },
-  { icon: KeyRound, title: "Secure Authentication", span: "md:col-span-6", extra: "jwt", desc: "JWT bearer sessions with BCrypt-hashed passwords and protected REST APIs — every request is authorised on the server, not just the UI." },
+  { icon: ShieldCheck, title: "Secure Authentication", span: "md:col-span-6", desc: "Protected sign-in, encrypted password storage, and server-side access checks help keep attendance records private." },
 ];
 
 function FeatureExtra({ kind }: { kind: Feature["extra"] }) {
@@ -132,12 +132,6 @@ function FeatureExtra({ kind }: { kind: Feature["extra"] }) {
         ))}
       </div>
     );
-  if (kind === "jwt")
-    return (
-      <div className="mt-3 font-mono text-[11px] text-slate-500 bg-night-900 rounded-lg px-3 py-2 inline-block max-w-full truncate">
-        Authorization: Bearer <span className="text-brand-300">eyJhbGciOiJIUzI1NiJ9</span>.<span className="text-ok-200">eyJyb2xlIjoiVEVBQ0hFUiJ9</span>.<span className="text-warn-200">sig</span>
-      </div>
-    );
   if (kind === "rolls")
     return (
       <div className="mt-3 flex flex-wrap gap-1.5 font-mono text-[11px] font-semibold text-slate-500">
@@ -148,14 +142,6 @@ function FeatureExtra({ kind }: { kind: Feature["extra"] }) {
     );
   return null;
 }
-
-const ARCH = [
-  { label: "React + Tailwind UI", sub: "Dashboards · Fetch API" },
-  { label: "REST API · JWT", sub: "Bearer token on every request" },
-  { label: "Spring Boot", sub: "Controllers → Services · Spring Security" },
-  { label: "JPA / Hibernate", sub: "Entities · validation · transactions" },
-  { label: "PostgreSQL", sub: "Users · classes · attendance" },
-];
 
 export default function Landing() {
   const navigate = useNavigate();
@@ -173,7 +159,7 @@ export default function Landing() {
             <Logo />
           </button>
           <nav className="hidden sm:flex items-center gap-1">
-            {[["Home", () => window.scrollTo({ top: 0, behavior: "smooth" })], ["Features", () => scrollTo("features")], ["About", () => scrollTo("about")]].map(([label, fn]) => (
+            {[["Home", () => window.scrollTo({ top: 0, behavior: "smooth" })], ["Features", () => scrollTo("features")]].map(([label, fn]) => (
               <button key={label as string} onClick={fn as () => void} className="px-3.5 py-2 rounded-lg text-[13.5px] font-bold text-slate-600 hover:text-brand-700 hover:bg-brand-50 transition-colors">
                 {label as string}
               </button>
@@ -253,54 +239,6 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* about / architecture */}
-      <section id="about" className="bg-night-900 night-grid relative overflow-hidden">
-        <div className="max-w-6xl mx-auto px-5 py-16 lg:py-24 grid lg:grid-cols-2 gap-12 items-start">
-          <div>
-            <p className="text-[12px] font-bold uppercase tracking-[0.16em] text-brand-300 mb-2">About the project</p>
-            <h2 className="font-display font-bold text-[1.9rem] lg:text-[2.3rem] text-white tracking-tight leading-tight">
-              Built like a real full-stack system
-            </h2>
-            <p className="mt-4 text-[14.5px] leading-relaxed text-slate-300 font-medium">
-              Attendify follows a classic B.Tech mini-project architecture: a REST API secured with JWT,
-              role-based authorization, validated DTOs, JPA entities and a normalised PostgreSQL schema —
-              presented through fast, role-specific dashboards.
-            </p>
-            <ul className="mt-6 space-y-3">
-              {[
-                "Percentages are always computed — never typed in by hand",
-                "Duplicate attendance per student + subject + date is impossible",
-                "Students can read only their own record; teachers only their subjects",
-                "Every operation answers with a consistent success/error payload",
-              ].map((t) => (
-                <li key={t} className="flex items-start gap-2.5 text-[13.5px] font-semibold text-slate-200">
-                  <CheckCircle2 className="w-4.5 h-4.5 text-ok-500 shrink-0 mt-0.5" /> {t}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="space-y-2.5">
-            {ARCH.map((step, i) => (
-              <div key={step.label}>
-                <div className="flex items-center gap-4 rounded-xl bg-white/6 border border-white/10 px-5 py-3.5 hover:bg-white/10 hover:border-brand-400/40 transition-colors">
-                  <span className="grid place-items-center w-8 h-8 rounded-lg bg-brand-600/25 text-brand-300 font-mono text-[12px] font-bold shrink-0">{i + 1}</span>
-                  <div>
-                    <p className="text-[14px] font-bold text-white">{step.label}</p>
-                    <p className="text-[12px] font-semibold text-slate-400">{step.sub}</p>
-                  </div>
-                  <Layers className="w-4 h-4 text-slate-500 ml-auto shrink-0" />
-                </div>
-                {i < ARCH.length - 1 && (
-                  <div className="flex justify-center py-0.5">
-                    <svg width="14" height="16" viewBox="0 0 14 16" className="text-brand-400/70"><path d="M7 1v11M2.5 8.5L7 13l4.5-4.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" fill="none" /></svg>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* CTA */}
       <section className="max-w-6xl mx-auto px-5 py-16 lg:py-20">
         <div className="relative overflow-hidden rounded-2xl bg-brand-600 px-7 py-10 lg:px-12 lg:py-14 flex flex-col lg:flex-row lg:items-center gap-6 justify-between">
@@ -330,7 +268,7 @@ export default function Landing() {
           <div>
             <p className="text-[11.5px] font-bold uppercase tracking-[0.12em] text-slate-400 mb-3">Explore</p>
             <div className="flex flex-col items-start gap-1.5">
-              {[["Features", () => scrollTo("features")], ["About", () => scrollTo("about")], ["Login", () => navigate("/login")]].map(([label, fn]) => (
+              {[["Features", () => scrollTo("features")], ["Login", () => navigate("/login")]].map(([label, fn]) => (
                 <button key={label as string} onClick={fn as () => void} className="text-[13.5px] font-bold text-slate-600 hover:text-brand-700 transition-colors">
                   {label as string}
                 </button>
